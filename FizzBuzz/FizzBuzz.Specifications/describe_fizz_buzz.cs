@@ -40,4 +40,44 @@ namespace Specifications
       It should_return_an_error = () => exception.ShouldBe(typeof (ArgumentException));
    }
 
+   [Subject("Fizz Buzz")]
+   public class when_fizz_divisor_is_zero
+   {
+      static FizzBuzz fizzBuzz;
+      static Exception exception;
+      static int number_of_results_recieved;
+
+      Establish context = () =>
+      {
+         fizzBuzz = new FizzBuzz{FizzDivisor = 0};
+      };
+
+      Because of = () =>
+      {
+         exception = Catch.Exception(() => fizzBuzz.Run(200, 20, (x) => { }));
+      };
+
+      It should_not_allow_the_user_to_divide_by_zero = () => exception.ShouldBe(typeof(DivideByZeroException));
+   }
+
+   [Subject("Fizz Buzz")]
+   public class when_buzz_divisor_is_zero
+   {
+      static FizzBuzz fizzBuzz;
+      static Exception exception;
+      static int number_of_results_recieved;
+
+      Establish context = () =>
+      {
+         fizzBuzz = new FizzBuzz { BuzzDivisor = 0 };
+      };
+
+      Because of = () =>
+      {
+         exception = Catch.Exception(() => fizzBuzz.Run(200, 20, (x) => { }));
+      };
+
+      It should_not_allow_the_user_to_divide_by_zero = () => exception.ShouldBe(typeof(DivideByZeroException));
+   }
+
 }

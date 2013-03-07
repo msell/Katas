@@ -29,8 +29,7 @@ namespace FizzBuzzer
 
       public void Run(int minValue, int maxValue, Action<string> result)
       {
-         if (maxValue < minValue)
-            throw new ArgumentException("maxValue must be greater than minValue");
+         ValidateInputs(minValue, maxValue);
 
          for (var i = minValue; i <= maxValue; i++)
          {
@@ -55,7 +54,17 @@ namespace FizzBuzzer
             result.Invoke(i.ToString(CultureInfo.InvariantCulture));
          }
       }
+
+      void ValidateInputs(int minValue, int maxValue)
+      {
+         if (FizzDivisor == 0)
+            throw new DivideByZeroException("FizzDivisor cannot be zero");
+         if (BuzzDivisor == 0)
+            throw new DivideByZeroException("BuzzDivisor cannot be zero");
+         if (maxValue < minValue)
+            throw new ArgumentException("maxValue must be greater than minValue");
+      }
    }
 
-  
+
 }
