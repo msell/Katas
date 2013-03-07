@@ -34,10 +34,10 @@ namespace Specifications
       [TestCase(15, ExpectedResult = "FooBar")]
       public string should_be_able_to_replace_words(int dataPoint)
       {
-         var fizzBuzz = new FizzBuzz{Fizz = "Foo", Buzz = "Bar"};
+         var fizzBuzz = new FizzBuzz { Fizz = "Foo", Buzz = "Bar" };
          string result = string.Empty;
 
-         fizzBuzz.Run(dataPoint, dataPoint,(x) => { result = x; }););
+         fizzBuzz.Run(dataPoint, dataPoint, (x) => { result = x; });
 
          return result;
       }
@@ -49,10 +49,10 @@ namespace Specifications
       [TestCase(70, ExpectedResult = "FooBar")]
       public string should_be_able_to_replace_words_and_divisors(int dataPoint)
       {
-         var fizzBuzz = new FizzBuzz { Fizz = "Foo", Buzz = "Bar", FizzDivisor = 7, BuzzDivisor = 10};
+         var fizzBuzz = new FizzBuzz { Fizz = "Foo", Buzz = "Bar", FizzDivisor = 7, BuzzDivisor = 10 };
          string result = string.Empty;
 
-         fizzBuzz.Run(dataPoint, dataPoint, (x) => { result = x; }); );
+         fizzBuzz.Run(dataPoint, dataPoint, (x) => { result = x; });
 
          return result;
       }
