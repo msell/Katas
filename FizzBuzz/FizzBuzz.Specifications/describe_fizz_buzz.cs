@@ -15,12 +15,7 @@ namespace Specifications
             fizzBuzz = new FizzBuzz();
          };
 
-      Because of = () =>
-         {
-            fizzBuzz.ResultReturned += s => number_of_results_recieved += 1;
-
-            fizzBuzz.Run(1, 20);
-         };
+      Because of = () => fizzBuzz.Run(1, 20, (x) => number_of_results_recieved += 1);
 
       It should_return_a_result_for_each_integer_in_a_range = () => number_of_results_recieved.ShouldEqual(20);
    }
@@ -39,7 +34,7 @@ namespace Specifications
 
       Because of = () =>
       {
-         exception = Catch.Exception(() => fizzBuzz.Run(200, 20));
+         exception = Catch.Exception(() => fizzBuzz.Run(200, 20, (x)=>{}));
       };
 
       It should_return_an_error = () => exception.ShouldBe(typeof (ArgumentException));

@@ -21,10 +21,8 @@ namespace Specifications
          var fizzBuzz = new FizzBuzz();
          string result = string.Empty;
 
-         fizzBuzz.ResultReturned += s => result = s;
 
-         fizzBuzz.Run(dataPoint, dataPoint);
-         
+         fizzBuzz.Run(dataPoint, dataPoint, (x) => { result = x; });
          return result;
       }
 
@@ -39,9 +37,7 @@ namespace Specifications
          var fizzBuzz = new FizzBuzz{Fizz = "Foo", Buzz = "Bar"};
          string result = string.Empty;
 
-         fizzBuzz.ResultReturned += s => result = s;
-
-         fizzBuzz.Run(dataPoint, dataPoint);
+         fizzBuzz.Run(dataPoint, dataPoint,(x) => { result = x; }););
 
          return result;
       }
@@ -56,9 +52,7 @@ namespace Specifications
          var fizzBuzz = new FizzBuzz { Fizz = "Foo", Buzz = "Bar", FizzDivisor = 7, BuzzDivisor = 10};
          string result = string.Empty;
 
-         fizzBuzz.ResultReturned += s => result = s;
-
-         fizzBuzz.Run(dataPoint, dataPoint);
+         fizzBuzz.Run(dataPoint, dataPoint, (x) => { result = x; }); );
 
          return result;
       }

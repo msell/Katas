@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Globalization;
 
 namespace FizzBuzzer
@@ -9,8 +10,7 @@ namespace FizzBuzzer
       string Buzz { get; set; }
       int FizzDivisor { get; set; }
       int BuzzDivisor { get; set; }
-      event Action<string> ResultReturned;
-      void Run(int minValue, int maxValue);
+      void Run(int minValue, int maxValue, Action<string> result);
    }
 
    public class FizzBuzz : IFizzBuzz
@@ -27,37 +27,34 @@ namespace FizzBuzzer
       public string Buzz { get; set; }
       public int FizzDivisor { get; set; }
       public int BuzzDivisor { get; set; }
- 
-      public event Action<string> ResultReturned = s => { };
- 
-      public void Run(int minValue, int maxValue)
+
+      public void Run(int minValue, int maxValue, Action<string> result)
       {
-         if(maxValue < minValue)
+         if (maxValue < minValue)
             throw new ArgumentException("maxValue must be greater than minValue");
 
          for (var i = minValue; i <= maxValue; i++)
          {
             if (i % FizzDivisor == 0 && i % BuzzDivisor == 0)
             {
-               ResultReturned.Invoke(string.Concat(Fizz,Buzz));
+               result.Invoke(string.Concat(Fizz, Buzz));
                continue;
             }
 
             if (i % FizzDivisor == 0)
             {
-               ResultReturned.Invoke(Fizz);
+               result.Invoke(Fizz);
                continue;
             }
 
             if (i % BuzzDivisor == 0)
             {
-               ResultReturned.Invoke(Buzz);
+               result.Invoke(Buzz);
                continue;
             }
 
-            ResultReturned.Invoke(i.ToString(CultureInfo.InvariantCulture));
+            result.Invoke(i.ToString(CultureInfo.InvariantCulture));
          }
-
       }
    }
 

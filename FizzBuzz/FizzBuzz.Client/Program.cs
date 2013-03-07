@@ -9,9 +9,7 @@ namespace SampleApplication
       {
          var fizzBuzz = new FizzBuzz();
 
-         fizzBuzz.ResultReturned += Console.WriteLine;
-
-         fizzBuzz.Run(1, 2000000000);
+         fizzBuzz.Run(1, 2000000000, Console.WriteLine);
 
          Console.ReadKey();
       }
